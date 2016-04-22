@@ -9,7 +9,6 @@ RUN apt-get update \
 	&& apt-get -y dist-upgrade \
 	&& apt-get -y install \
         gdebi-core \
-        jsvc \
         libtcnative-1 \
         wget \
 	&& apt-get -y clean
@@ -20,7 +19,8 @@ RUN apt-get update \
 RUN cd /tmp \
 	&& wget "http://dl.ubnt.com/firmwares/unifi-video/${UNIFI_VERSION}/unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb" \
 	&& gdebi -n unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb \
-    && rm -rf unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb
+    && rm -rf unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb \
+    $$ sed -i '' 's/\(ENABLE_TMPFS=\).*$/\1no/' /usr/sbin/unifi-video
 
 # The following ports are used on UniFi Video hosts:
 
