@@ -21,7 +21,7 @@ RUN cd /tmp \
 	&& wget "http://dl.ubnt.com/firmwares/unifi-video/${UNIFI_VERSION}/unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb" \
 	&& gdebi -n unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb \
     && rm -rf unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb \
-    && sed -i '' 's/\(ENABLE_TMPFS=\).*$/\1no/' /usr/sbin/unifi-video
+    && sed -i'' 's/\(ENABLE_TMPFS=\).*$/\1no/' /usr/sbin/unifi-video
 
 # The following ports are used on UniFi Video hosts:
 
@@ -46,7 +46,7 @@ RUN cd /tmp \
 # 554 RTSP server (mandatory only on gen1)
 
 
-EXPOSE  7447 7446 1935 7443 7080 6666 80 443
+EXPOSE  7447 7446 1935 7443 7080 6666
 
 VOLUME /var/lib/unifi-video
 VOLUME /var/log/unifi-video
