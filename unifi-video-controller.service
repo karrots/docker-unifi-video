@@ -11,9 +11,6 @@ ExecStartPre=/usr/bin/docker pull jkarras/unifi-video-controller
 ExecStartPre=-/usr/bin/docker create --name="unifi-video-controller-backing" jkarras/unifi-video-controller
 ExecStart=/usr/bin/docker run \
 	--name unifi-video-controller \
-	-m 1g \
-	--cpu-period=100000 \
-	--cpu-quota=200000 \
 	--volumes-from=unifi-video-controller-backing \
 	--net=host \
 	jkarras/unifi-video-controller
