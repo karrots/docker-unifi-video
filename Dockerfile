@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
 	&& apt-get -y dist-upgrade \
-	&& apt-get -y install
+	&& apt-get -y install \
         binutils \
         gdebi \
         jsvc \
