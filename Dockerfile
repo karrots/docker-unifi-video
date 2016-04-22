@@ -3,13 +3,14 @@ MAINTAINER Jonathan Karras <jkarras@karras.net>
 
 ENV UNIFI_VERSION 3.2.2
 ENV DEBIAN_FRONTEND noninteractive
-
+ENV ENABLE_TMPFS no
 
 RUN apt-get update \
 	&& apt-get -y dist-upgrade \
 	&& apt-get -y install \
         gdebi-core \
         libtcnative-1 \
+        openjdk-7-jre-headless \
         wget \
 	&& apt-get -y clean
 
@@ -20,7 +21,7 @@ RUN cd /tmp \
 	&& wget "http://dl.ubnt.com/firmwares/unifi-video/${UNIFI_VERSION}/unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb" \
 	&& gdebi -n unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb \
     && rm -rf unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb \
-    $$ sed -i '' 's/\(ENABLE_TMPFS=\).*$/\1no/' /usr/sbin/unifi-video
+    && sed -i '' 's/\(ENABLE_TMPFS=\).*$/\1no/' /usr/sbin/unifi-video
 
 # The following ports are used on UniFi Video hosts:
 
