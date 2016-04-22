@@ -53,4 +53,4 @@ VOLUME /var/log/unifi-video
 WORKDIR /var/lib/unifi-video
 
 #CMD ["java", "-cp", "/usr/share/java/commons-daemon.jar:/usr/lib/unifi-video/lib/airvision.jar", "-Dav.tempdir=/var/cache/unifi-video", "-Djava.security.egd=file:/dev/./urandom", "-Djava.awt.headless=true", "-Dfile.encoding=UTF-8", "-Xmx1024M", "com.ubnt.airvision.Main", "start"]
-CMD ["/usr/sbin/unifi-video", "-D"]
+CMD ["/usr/sbin/unifi-video", "-D", "start"]
