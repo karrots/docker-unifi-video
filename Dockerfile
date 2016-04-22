@@ -20,7 +20,7 @@ RUN apt-get update \
 RUN cd /tmp \
 	&& wget "http://dl.ubnt.com/firmwares/unifi-video/${UNIFI_VERSION}/unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb" \
 	&& gdebi --n unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb \
-	&& rm -rf /var/lib/unifi-video/*
+	&& rm -rf /var/lib/unifi-video/* \
     && rm -rf unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb
 
 # The following ports are used on UniFi Video hosts:
