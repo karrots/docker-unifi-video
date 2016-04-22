@@ -1,0 +1,23 @@
+[Unit]
+Description=Ubituiti Unifi Video Controller
+After=docker.service
+
+[Service]
+Restart=always
+RestartSec=1
+ExecStartPre=-/usr/bin/docker kill unifi-video-controller
+ExecStartPre=-/usr/bin/docker rm -f unifi-video-controller
+ExecStartPre=/usr/bin/docker pull jkarras/unifi-video-controller
+ExecStartPre=-/usr/bin/docker create --name="unifi-video-controller-backing" jkarras/unifi-video-controller
+ExecStart=/usr/bin/docker run \
+	--name unifi-video-controller \
+	-m 1g \
+	--cpu-period=100000 \
+	--cpu-quota=200000 \
+	--volumes-from=unifi-video-controller-backing \
+	--net=host \
+	jkarras/unifi-video-controller
+ExecStop=/usr/bin/docker stop -t 2 unifi-video-controller
+
+[Install]
+WantedBy=multi-user.target
