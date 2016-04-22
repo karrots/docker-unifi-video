@@ -14,7 +14,7 @@ RUN apt-get update \
         libtcnative-1 \
         mongodb-server \
         openjdk-7-jre-headless \
-        wget
+        wget \
 	&& apt-get -y clean
 
 RUN cd /tmp \
