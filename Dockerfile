@@ -8,18 +8,18 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
 	&& apt-get -y dist-upgrade \
 	&& apt-get -y install \
-        binutils \
-        gdebi \
+        gdebi-core \
         jsvc \
         libtcnative-1 \
-        mongodb-server \
-        openjdk-7-jre-headless \
         wget \
 	&& apt-get -y clean
 
+#RUN  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 \
+#     && echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
 RUN cd /tmp \
 	&& wget "http://dl.ubnt.com/firmwares/unifi-video/${UNIFI_VERSION}/unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb" \
-	&& gdebi --n unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb \
+	&& gdebi -n unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb \
     && rm -rf unifi-video_${UNIFI_VERSION}~Debian7_amd64.deb
 
 # The following ports are used on UniFi Video hosts:
